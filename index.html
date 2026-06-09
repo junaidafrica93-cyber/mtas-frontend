@@ -6,157 +6,49 @@
 <title>JOBMETRIX</title>
 
 <style>
-
-/* BACKGROUND VIDEO */
 video.bg{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top:0;left:0;
+  width:100%;height:100%;
   object-fit:cover;
   z-index:-2;
-  filter: brightness(0.5) contrast(1.2) saturate(1.2);
+  filter: brightness(0.5) contrast(1.2);
 }
 
-/* DARK OVERLAY */
 .overlay{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: linear-gradient(135deg, rgba(10,15,35,0.85), rgba(0,0,0,0.75));
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
   z-index:-1;
 }
 
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  color:white;
-}
+body{margin:0;font-family:'Segoe UI',sans-serif;color:white;}
+.container{display:flex;justify-content:center;align-items:center;height:100vh;}
 
-/* SCREEN ANIMATION */
-.container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  transition: all 0.6s ease;
-}
-
-/* CARD (MORE TRANSPARENT + GLOW) */
 .card{
-  background: rgba(20, 30, 60, 0.45);
-  backdrop-filter: blur(20px);
+  background:rgba(20,30,60,0.4);
+  backdrop-filter:blur(15px);
   padding:30px;
   border-radius:20px;
   width:460px;
   text-align:center;
-
-  border: 1px solid rgba(0,255,255,0.2);
-
-  box-shadow:
-    0 0 20px rgba(0,255,255,0.1),
-    0 0 40px rgba(0,140,255,0.1);
-
-  animation: fadeIn 0.6s ease;
 }
 
-/* TITLES */
-h2{
-  color:#00eaff;
-  text-shadow: 0 0 10px #00eaff;
-}
-
-/* INPUTS */
-input,textarea{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:10px;
-  border:none;
-  background:rgba(0,0,0,0.4);
-  color:white;
-}
-
-/* BUTTONS (GLOW EFFECT 🔥) */
 button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:12px;
-
-  background: linear-gradient(135deg, #0ea5e9, #2563eb);
-  
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-
-  transition: all 0.3s ease;
-
-  box-shadow: 0 0 10px rgba(0,150,255,0.4);
+  width:100%;padding:12px;margin-top:10px;
+  border:none;border-radius:12px;
+  background:linear-gradient(135deg,#0ea5e9,#2563eb);
+  color:white;font-weight:bold;cursor:pointer;
 }
 
-/* HOVER GLOW */
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 0 15px rgba(0,200,255,0.8),
-    0 0 30px rgba(0,120,255,0.6);
-}
-
-/* CLICK GLOW */
-button:active{
-  transform:scale(0.97);
-  box-shadow:
-    0 0 25px rgba(0,255,255,1);
-}
-
-/* BACK BUTTON */
-.back{
-  background: rgba(80,80,100,0.5);
-}
-
-/* CHECKBOX */
-.checkbox{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:12px;
-  padding:12px;
-  background:rgba(0,0,0,0.4);
-  border-radius:12px;
-}
-
-/* FOOTER */
-.footer{
-  margin-top:20px;
-  font-size:13px;
-}
-
-.footer a{
-  color:#00eaff;
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-/* HIDE */
-.hidden{
-  display:none;
-}
-
+.hidden{display:none;}
 </style>
 </head>
 
 <body>
 
-<!-- ✅ VIDEO FIX (FINAL) -->
+<!-- ✅ VIDEO FIX -->
 <video class="bg" autoplay muted loop playsinline>
   <source src="background.mp4" type="video/mp4">
 </video>
@@ -166,76 +58,75 @@ button:active{
 <!-- LANDING -->
 <div id="landing" class="container">
   <div class="card">
-    <h2>🚀 MTAS Platform</h2>
-    <p style="opacity:0.7;font-size:12px;">
-      AI-Powered Talent Intelligence Engine
-    </p>
-
-    <button onclick="show('signupChoice')">Sign Up</button>
-    <button onclick="show('signin')">Sign In</button>
-
-    <div class="footer">
-      <a href="terms.html" target="_blank">Terms</a> |
-      <a href="privacy.html" target="_blank">Privacy</a>
-    </div>
+    <h2>🚀 JOBMETRIX</h2>
+    <button onclick="show('manual')">Start</button>
   </div>
 </div>
 
-<!-- SIGN IN -->
-<div id="signin" class="container hidden">
+<!-- MANUAL ENTRY -->
+<div id="manual" class="container hidden">
   <div class="card">
-    <h2>Sign In</h2>
-    <input placeholder="Email">
-    <input type="password" placeholder="Password">
+    <h2>Enter Profile</h2>
+    <input id="name" placeholder="Full Name">
+    <textarea id="experience" placeholder="Experience"></textarea>
 
-    <button onclick="show('dashboard')">Login</button>
-    <button class="back" onclick="show('landing')">⬅ Back</button>
-  </div>
-</div>
-
-<!-- SIGN UP -->
-<div id="signupChoice" class="container hidden">
-  <div class="card">
-    <h2>Choose Method</h2>
-
-    <button onclick="show('linkedin')">LinkedIn</button>
-    <button onclick="show('cvUpload')">Upload CV</button>
-    <button onclick="show('manual')">Manual Entry</button>
-
-    <button class="back" onclick="show('landing')">Back</button>
-  </div>
-</div>
-
-<!-- LINKEDIN -->
-<div id="linkedin" class="container hidden">
-  <div class="card">
-    <h2>LinkedIn</h2>
-    <input placeholder="Full Name">
-    <input placeholder="Email">
-
-    <button onclick="show('dashboard')">Continue</button>
+    <button onclick="analyzeProfile()">Analyze with AI</button>
   </div>
 </div>
 
 <!-- DASHBOARD -->
-<div id="dashboard" class="container hidden">
-  <div class="card">
-    <h2>✅ Profile Created</h2>
-    <p>AI processing completed</p>
-
-    <button class="back" onclick="show('landing')">Back Home</button>
-  </div>
-</div>
+<div id="dashboard" class="container hidden"></div>
 
 <script>
 function show(id){
-  document.querySelectorAll('.container').forEach(el=>{
-    el.classList.add('hidden');
-  });
+  document.querySelectorAll('.container').forEach(el=>el.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
 
-  setTimeout(()=>{
-    document.getElementById(id).classList.remove('hidden');
-  },150);
+// ✅ AI CONNECTION
+async function analyzeProfile(){
+
+  const name = document.getElementById("name").value;
+  const experience = document.getElementById("experience").value;
+
+  document.getElementById("dashboard").innerHTML = `
+    <div class="card">
+      <h2>⚡ Processing...</h2>
+    </div>
+  `;
+
+  show("dashboard");
+
+  try {
+    const res = await fetch("https://mtas-backend.onrender.com/analyze", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ name, experience })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("dashboard").innerHTML = `
+      <div class="card">
+        <h2>🚀 JOBMETRIX Results</h2>
+        <p><b>Name:</b> ${data.name}</p>
+        <p><b>Experience:</b> ${data.experience_level}</p>
+        <p><b>Skills:</b> ${data.skills.join(', ')}</p>
+        <p><b>Roles:</b> ${data.recommended_roles.join(', ')}</p>
+
+        <button onclick="show('landing')">Back</button>
+      </div>
+    `;
+
+  } catch(e){
+
+    document.getElementById("dashboard").innerHTML = `
+      <div class="card">
+        <h2>❌ Error</h2>
+        <button onclick="show('landing')">Back</button>
+      </div>
+    `;
+  }
 }
 </script>
 
