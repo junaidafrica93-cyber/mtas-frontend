@@ -6,7 +6,6 @@
 <title>My Talent Acquisition Specialist</title>
 
 <style>
-/* VIDEO BACKGROUND */
 video.bg{
   position:fixed;
   top:0;left:0;
@@ -24,130 +23,38 @@ video.bg{
   z-index:-1;
 }
 
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  color:white;
-}
-
-.container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.card{
-  background:rgba(30,41,59,0.85);
-  backdrop-filter:blur(12px);
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.6);
-  width:460px;
-  text-align:center;
-}
-
+body{margin:0;font-family:'Segoe UI',sans-serif;color:white;}
+.container{display:flex;justify-content:center;align-items:center;height:100vh;}
+.card{background:rgba(30,41,59,0.85);backdrop-filter:blur(12px);padding:30px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,0.6);width:460px;text-align:center;}
 h2{color:#60a5fa;}
-
-button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(135deg,#3b82f6,#2563eb);
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 15px rgba(59,130,246,0.4);
-}
-
+button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-weight:bold;cursor:pointer;transition:0.2s;}
+button:hover{transform:translateY(-2px);box-shadow:0 8px 15px rgba(59,130,246,0.4);} 
 .back{background:#334155;}
-
-input,textarea{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:10px;
-  border:none;
-  background:rgba(15,23,42,0.7);
-  color:white;
-}
-
-input:focus,textarea:focus{
-  outline:none;
-  box-shadow:0 0 10px rgba(59,130,246,0.5);
-}
-
-.checkbox{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:12px;
-  padding:12px;
-  background:rgba(15,23,42,0.7);
-  border-radius:12px;
-}
-
-.checkbox input{
-  appearance:none;
-  width:20px;height:20px;
-  border:2px solid #3b82f6;
-  border-radius:6px;
-  cursor:pointer;
-  position:relative;
-}
-
-.checkbox input:checked{
-  background:#3b82f6;
-}
-
-.checkbox input:checked::after{
-  content:"✓";
-  color:white;
-  position:absolute;
-  top:-2px;left:5px;
-}
-
-.checkbox label{
-  font-size:13px;
-  white-space:nowrap;
-}
-
-.footer{
-  margin-top:20px;
-  font-size:13px;
-}
-
-.footer a{color:#60a5fa; text-decoration:none;}
-
+input,textarea{width:100%;padding:12px;margin-top:10px;border-radius:10px;border:none;background:rgba(15,23,42,0.7);color:white;}
+.checkbox{display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px;background:rgba(15,23,42,0.7);border-radius:12px;}
+.checkbox input{appearance:none;width:20px;height:20px;border:2px solid #3b82f6;border-radius:6px;cursor:pointer;position:relative;}
+.checkbox input:checked{background:#3b82f6;}
+.checkbox input:checked::after{content:"✓";color:white;position:absolute;top:-2px;left:5px;}
+.footer{margin-top:20px;font-size:13px;}
+.footer a{color:#60a5fa;text-decoration:none;}
 .hidden{display:none;}
 </style>
 </head>
 
 <body>
 
-<!-- ✅ FIXED VIDEO TAG -->
+<!-- ✅ FINAL CORRECT VIDEO SETUP -->
 <video class="bg" autoplay muted loop playsinline>
   background.mp4
-  Your browser does not support the video tag.
 </video>
 <div class="overlay"></div>
 
-<!-- LANDING -->
 <div id="landing" class="container">
   <div class="card">
     <h2>🚀 My Talent Acquisition Specialist</h2>
     <p style="opacity:0.7;font-size:12px;">AI-Powered Talent Matching Platform</p>
-
     <button onclick="show('signupChoice')">Sign Up</button>
     <button onclick="show('signin')">Sign In</button>
-
     <div class="footer">
       <a href="terms.html" target="_blank">Terms</a> |
       <a href="privacy.html" target="_blank">Privacy</a>
@@ -155,7 +62,16 @@ input:focus,textarea:focus{
   </div>
 </div>
 
-<!-- SIGNUP -->
+<div id="signin" class="container hidden">
+  <div class="card">
+    <h2>Sign In</h2>
+    <input placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="show('dashboard')">Login</button>
+    <button class="back" onclick="show('landing')">⬅ Back</button>
+  </div>
+</div>
+
 <div id="signupChoice" class="container hidden">
   <div class="card">
     <h2>Choose Sign Up Method</h2>
@@ -166,57 +82,47 @@ input:focus,textarea:focus{
   </div>
 </div>
 
-<!-- LINKEDIN -->
 <div id="linkedin" class="container hidden">
   <div class="card">
     <h2>LinkedIn</h2>
     <input id="li_name" placeholder="Full Name">
     <input id="li_email" placeholder="Email">
-
     <div class="checkbox">
       <input type="checkbox" id="li_consent">
       <label>I accept <a href="terms.html" target="_blank">Terms</a> and <a href="privacy.html" target="_blank">Privacy</a></label>
     </div>
-
     <button onclick="show('dashboard')">Continue</button>
     <button class="back" onclick="show('signupChoice')">Back</button>
   </div>
 </div>
 
-<!-- CV -->
 <div id="cvUpload" class="container hidden">
   <div class="card">
     <h2>Upload CV</h2>
     <input id="cv_file" type="file">
-
     <div class="checkbox">
       <input type="checkbox" id="cv_consent">
       <label>I accept <a href="terms.html" target="_blank">Terms</a> and <a href="privacy.html" target="_blank">Privacy</a></label>
     </div>
-
     <button onclick="show('dashboard')">Continue</button>
     <button class="back" onclick="show('signupChoice')">Back</button>
   </div>
 </div>
 
-<!-- MANUAL -->
 <div id="manual" class="container hidden">
   <div class="card">
     <h2>Manual Entry</h2>
     <input id="name" placeholder="Full Name">
     <textarea id="experience" placeholder="Experience"></textarea>
-
     <div class="checkbox">
       <input type="checkbox" id="manual_consent">
       <label>I accept <a href="terms.html" target="_blank">Terms</a> and <a href="privacy.html" target="_blank">Privacy</a></label>
     </div>
-
     <button onclick="show('dashboard')">Continue</button>
     <button class="back" onclick="show('signupChoice')">Back</button>
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboard" class="container hidden">
   <div class="card">
     <h2>✅ Profile Saved</h2>
